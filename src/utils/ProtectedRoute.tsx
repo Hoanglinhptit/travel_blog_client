@@ -1,13 +1,7 @@
 // Protected route include authentication and authorization checking
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, Outlet } from "react-router-dom";
 
-const PrivateRoute = ({
-  children,
-  roles,
-}: {
-  children: JSX.Element;
-  roles: Array<string>;
-}) => {
+const PrivateRoute = ({ roles }: { roles: Array<string> }) => {
   const location = useLocation();
   const isAuth = localStorage.getItem("auth_token");
   const role = localStorage.getItem("role");
@@ -26,7 +20,7 @@ const PrivateRoute = ({
     );
   }
 
-  return children;
+  return <Outlet />;
 };
 
 export { PrivateRoute };

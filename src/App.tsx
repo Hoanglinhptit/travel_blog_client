@@ -16,33 +16,14 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/signup" element={<SignUp />} />
-          <Route
-            path="/admin/posts"
-            element={
-              <PrivateRoute roles={["admin"]}>
-                {" "}
-                <Post />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/admin/users"
-            element={
-              <PrivateRoute roles={["admin"]}>
-                {" "}
-                <Users />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/post"
-            element={
-              <PrivateRoute roles={["admin", "user"]}>
-                {" "}
-                <CRUDposts />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/" element={<PrivateRoute roles={["admin"]} />}>
+            <Route path="/admin/posts" element={<Post />} />
+            <Route path="/admin/users" element={<Users />} />
+          </Route>
+
+          <Route path="/" element={<PrivateRoute roles={["admin", "user"]} />}>
+            <Route path="/post" element={<CRUDposts />} />
+          </Route>
         </Routes>
       </div>
     </>
