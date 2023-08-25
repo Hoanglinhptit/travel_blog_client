@@ -24,7 +24,7 @@ const PrivateRoute = ({
       <>
         <p className="font-rubik text-6xl">ACCESS DENINED 404</p>
       </>
-    ); // build your won access denied page (sth like 404)
+    );
   }
 
   return children;
