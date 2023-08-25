@@ -1,12 +1,12 @@
 // Protected route include authentication and authorization checking
-import { ReactNode } from "react";
+import { ReactElement } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
 const PrivateRoute = ({
   children,
   roles,
 }: {
-  children: ReactNode;
+  children: ReactElement;
   roles: Array<string>;
 }) => {
   const location = useLocation();

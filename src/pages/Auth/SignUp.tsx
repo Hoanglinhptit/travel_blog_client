@@ -36,7 +36,7 @@ export const SignUp: React.FC = () => {
               fill="#BD92E6"
             />
             <text x="0" y="100" fontSize={40} fill="white">
-              WELCOME BACK!
+              CREATE AN ACCOUNT!
             </text>
           </svg>
           <div className="flex justify-center pt-8 flex-col">
