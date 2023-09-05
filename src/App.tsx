@@ -8,15 +8,19 @@ import CRUDposts from "./pages/CRUD posts";
 import { PrivateRoute } from "./utils/ProtectedRoute";
 // import { Footer } from "./layouts/footer";
 import { Login } from "./pages/Auth/Login";
+import { Header } from "./layouts/header";
 
 const App: React.FC = () => {
   return (
     <>
       <div>
         <Routes>
+          <Header />
+
           <Route path="/" element={<Home />} />
           <Route path="/auth/login" element={<Login />} />
           <Route path="/auth/signup" element={<SignUp />} />
+
           <Route path="/" element={<PrivateRoute roles={["admin"]} />}>
             <Route path="/admin/posts" element={<Post />} />
             <Route path="/admin/users" element={<Users />} />

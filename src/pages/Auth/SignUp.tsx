@@ -178,7 +178,10 @@ export const SignUp: React.FC = () => {
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+                Already a user?{" "}
+                <Link color={"blue.400"} href="/auth/login">
+                  Login
+                </Link>
               </Text>
             </Stack>
             <Stack spacing={2} align={"center"} maxW={"md"} w={"full"}>

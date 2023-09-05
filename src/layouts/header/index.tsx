@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Box,
   Flex,
@@ -13,7 +11,7 @@ import {
   PopoverTrigger,
   PopoverContent,
   useColorModeValue,
-  useBreakpointValue,
+  // useBreakpointValue,
   useDisclosure,
 } from "@chakra-ui/react";
 import {
@@ -23,6 +21,7 @@ import {
   ChevronRightIcon,
 } from "@chakra-ui/icons";
 import React from "react";
+import { Logo } from "../logo";
 
 export const Header: React.FC = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -42,7 +41,7 @@ export const Header: React.FC = () => {
       >
         <Flex
           flex={{ base: 1, md: "auto" }}
-          ml={{ base: -2 }}
+          ml={{ base: 2 }}
           display={{ base: "flex", md: "none" }}
         >
           <IconButton
@@ -55,13 +54,7 @@ export const Header: React.FC = () => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Text
-            textAlign={useBreakpointValue({ base: "center", md: "left" })}
-            fontFamily={"heading"}
-            color={useColorModeValue("gray.800", "white")}
-          >
-            Logo
-          </Text>
+          <Logo />
 
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
@@ -113,16 +106,21 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
 
   return (
-    <Stack direction={"row"} spacing={4}>
+    <Stack direction={"row"} spacing={5}>
       {NAV_ITEMS.map((navItem) => (
-        <Box key={navItem.label}>
+        <Box
+          key={navItem.label}
+          display={"flex"}
+          flexWrap={"wrap"}
+          alignItems={"center"}
+        >
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
               <Box
                 as="a"
                 p={2}
                 href={navItem.href ?? "#"}
-                fontSize={"sm"}
+                fontSize={"medium"}
                 fontWeight={500}
                 color={linkColor}
                 _hover={{
