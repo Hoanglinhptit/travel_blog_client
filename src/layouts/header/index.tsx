@@ -23,6 +23,9 @@ import {
 import React from "react";
 import { Logo } from "../logo";
 
+const role = localStorage.getItem("role");
+const isAuth = localStorage.getItem("auth_token");
+
 export const Header: React.FC = () => {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -61,36 +64,38 @@ export const Header: React.FC = () => {
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={"flex-end"}
-          direction={"row"}
-          spacing={6}
-        >
-          <Button
-            as={"a"}
-            fontSize={"sm"}
-            fontWeight={400}
-            variant={"link"}
-            href={"/auth/login"}
+        {
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={"flex-end"}
+            direction={"row"}
+            spacing={6}
           >
-            Sign In
-          </Button>
-          <Button
-            as={"a"}
-            display={{ base: "none", md: "inline-flex" }}
-            fontSize={"sm"}
-            fontWeight={600}
-            color={"white"}
-            bg={"pink.400"}
-            href={"#"}
-            _hover={{
-              bg: "pink.300",
-            }}
-          >
-            Sign Up
-          </Button>
-        </Stack>
+            <Button
+              as={"a"}
+              fontSize={"sm"}
+              fontWeight={400}
+              variant={"link"}
+              href={"/auth/login"}
+            >
+              Sign In
+            </Button>
+            <Button
+              as={"a"}
+              display={{ base: "none", md: "inline-flex" }}
+              fontSize={"sm"}
+              fontWeight={600}
+              color={"white"}
+              bg={"pink.400"}
+              href={"#"}
+              _hover={{
+                bg: "pink.300",
+              }}
+            >
+              Sign Up
+            </Button>
+          </Stack>
+        }
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -269,10 +274,10 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: "Inspiration",
+    label: "Share your own exp",
     children: [
       {
-        label: "Explore Design Work",
+        label: "Create Post",
         subLabel: "Trending Design to inspire you",
         href: "#",
       },
@@ -283,8 +288,9 @@ const NAV_ITEMS: Array<NavItem> = [
       },
     ],
   },
+
   {
-    label: "Find Work",
+    label: "DashBoard",
     children: [
       {
         label: "Job Board",
@@ -297,13 +303,14 @@ const NAV_ITEMS: Array<NavItem> = [
         href: "#",
       },
     ],
+    href: "/admin/dashboard",
   },
   {
-    label: "Learn Design",
+    label: "About US",
     href: "#",
   },
   {
-    label: "Hire Designers",
+    label: "Notifications",
     href: "#",
   },
 ];

@@ -10,16 +10,17 @@ import * as config from "../helpers/config";
 
 const createAxios = (): AxiosInstance => {
   const axiosInstant = axios.create();
-  axiosInstant.defaults.baseURL = config.apiv1;
-  axiosInstant.defaults.timeout = 2000;
+  axiosInstant.defaults.baseURL = config.apiv2;
+  // axiosInstant.defaults.timeout = 10000;
   axios.defaults.headers.post["Content-Type"] =
     "application/x-www-form-urlencoded";
   axios.defaults.headers.post["Content-Type"] = "application/json";
+  axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 
   axiosInstant.interceptors.request.use(
     async (axiosConfig: InternalAxiosRequestConfig) => {
       axiosConfig.headers.Authorization = `Bearer ${localStorage
-        .getItem("token")
+        .getItem("auth_token")
         ?.toString()}`;
       return axiosConfig;
     },
@@ -30,7 +31,6 @@ const createAxios = (): AxiosInstance => {
     (response: AxiosResponse) => response,
     (error) => {
       if (error?.response?.status === 401) {
-        // store.dispatch(logoutAction());
         localStorage.removeItem("auth_token");
         localStorage.removeItem("role");
         window.location.reload();

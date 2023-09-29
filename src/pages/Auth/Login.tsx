@@ -32,9 +32,12 @@ export const Login: React.FC = () => {
   const navigate: NavigateFunction = useNavigate();
   const handleLogin = async () => {
     const respone = await loginRequest(account);
-    localStorage.setItem("auth_token", respone.data.data.token);
+    console.log("response", respone);
+    localStorage.setItem("auth_token", respone.data.data.access_token);
     localStorage.setItem("role", respone.data.data.role);
-    navigate(-1);
+    respone.data.data.role === "admin"
+      ? navigate("/admin/dashboard")
+      : navigate(-1);
   };
   return (
     <Flex
@@ -56,7 +59,7 @@ export const Login: React.FC = () => {
         boxShadow={"lg"}
       >
         <Stack align={"center"}>
-          <Flex alignItems={"center"}>
+          <Flex alignItems={"center"} as={"a"} href="/">
             <Heading fontSize={"4xl"} color={"pink.400"}>
               Travelling
             </Heading>
@@ -90,7 +93,7 @@ export const Login: React.FC = () => {
                 onChange={(e) => {
                   setAccount({
                     ...account,
-                    email: e.target.value,
+                    password: e.target.value,
                   });
                 }}
               />

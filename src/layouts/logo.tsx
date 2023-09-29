@@ -9,6 +9,8 @@ export const Logo: React.FC = () => {
         // flexWrap={"wrap"}
         width={useBreakpointValue({ base: "200px", md: "150px" })}
         justifyContent={"center"}
+        as={"a"}
+        href="/"
       >
         <Heading
           fontSize={useBreakpointValue({ base: "3xl", md: "2xl" })}

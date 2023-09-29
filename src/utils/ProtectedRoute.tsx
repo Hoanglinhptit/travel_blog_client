@@ -1,6 +1,6 @@
 // Protected route include authentication and authorization checking
 import { Navigate, useLocation, Outlet } from "react-router-dom";
-
+import NotFound from "../pages/NotFound";
 const PrivateRoute = ({ roles }: { roles: Array<string> }) => {
   const location = useLocation();
   const isAuth = localStorage.getItem("auth_token");
@@ -15,7 +15,7 @@ const PrivateRoute = ({ roles }: { roles: Array<string> }) => {
   if (isAuth && !userHasRequiredRole) {
     return (
       <>
-        <p className="font-rubik text-6xl">ACCESS DENINED 404</p>
+        <NotFound />
       </>
     );
   }
