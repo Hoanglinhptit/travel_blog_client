@@ -17,13 +17,13 @@ import {
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-// import { loginRequest } from "../../apis";
-// import { NavigateFunction, useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import { Image } from "@chakra-ui/react";
 import Cat from "../../assets/travel_cat.svg";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { signUpRequest } from "../../apis";
 // import { SiLinkedin, SiMessenger } from "react-icons/si";
 
 export const SignUp: React.FC = () => {
@@ -44,15 +44,14 @@ export const SignUp: React.FC = () => {
     name: "",
   });
   const [showPassword, setShowPassword] = React.useState(false);
+  const navigate: NavigateFunction = useNavigate();
 
   // const navigate: NavigateFunction = useNavigate();
   const handleSignUp = async () => {
-    console.log("payload", account);
+    const respone = await signUpRequest(account);
+    console.log(respone);
 
-    // const respone = await loginRequest(account);
-    // localStorage.setItem("auth_token", respone.data.data.token);
-    // localStorage.setItem("role", respone.data.data.role);
-    // navigate(-1);
+    respone ? navigate("/auth/login") : navigate(-1);
   };
   return (
     <Flex

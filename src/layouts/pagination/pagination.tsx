@@ -70,6 +70,7 @@ const Pagination: React.FC<Props> = (props) => {
             mr={8}
             w={28}
             min={1}
+            defaultValue={props.pageIndex}
             max={props.totalPage}
             onKeyDown={(e: any) => {
               if (e.key === "Enter") {
@@ -80,7 +81,6 @@ const Pagination: React.FC<Props> = (props) => {
                 props.setPageNumber(Number(e.target.value));
               }
             }}
-            defaultValue={1}
             //   {pageIndex + 1}
           >
             <NumberInputField />

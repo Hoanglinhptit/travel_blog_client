@@ -15,9 +15,9 @@ import {
   Drawer,
   DrawerContent,
   useDisclosure,
-  BoxProps,
   FlexProps,
   Menu,
+  BoxProps,
   MenuButton,
   MenuDivider,
   MenuItem,
@@ -35,7 +35,7 @@ import {
 } from "react-icons/fi";
 import { IconType } from "react-icons";
 import { Logo } from "../../../layouts/logo";
-import Posts from "../Posts";
+// import Posts from "../Posts/PostContainer";
 // import Users from "../Users";
 interface LinkItemProps {
   name: string;
@@ -85,7 +85,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} href={link.href}>
           {link.name}
         </NavItem>
       ))}
@@ -109,7 +109,7 @@ const NavItem = ({ icon, children, href, ...rest }: NavItemProps) => {
         role="group"
         cursor="pointer"
         _hover={{
-          bg: "cyan.400",
+          bg: "pink.400",
           color: "white",
         }}
         {...rest}
@@ -217,10 +217,10 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   );
 };
 
-// interface Admin {
-//   child: React.FC;
-// }
-const index: React.FC = () => {
+type children = {
+  children: React.ReactNode; // 👈️ type children
+};
+const Dashboard = (props: children) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -230,6 +230,7 @@ const index: React.FC = () => {
     >
       <SidebarContent
         onClose={() => onClose}
+        children={undefined}
         display={{ base: "none", md: "block" }}
       />
       <Drawer
@@ -241,7 +242,7 @@ const index: React.FC = () => {
         size="full"
       >
         <DrawerContent>
-          <SidebarContent onClose={onClose} />
+          <SidebarContent onClose={onClose} children={undefined} />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
@@ -249,10 +250,10 @@ const index: React.FC = () => {
       <MobileNav onOpen={onOpen} />
       <Box ml={{ base: 0, md: 60 }} p="4">
         {/* Content */}
-        <Posts />
+        {props.children}
       </Box>
     </Box>
   );
 };
 
-export default index;
+export default Dashboard;

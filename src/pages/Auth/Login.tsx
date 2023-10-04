@@ -36,7 +36,7 @@ export const Login: React.FC = () => {
     localStorage.setItem("auth_token", respone.data.data.access_token);
     localStorage.setItem("role", respone.data.data.role);
     respone.data.data.role === "admin"
-      ? navigate("/admin/dashboard")
+      ? navigate("/admin/posts")
       : navigate(-1);
   };
   return (
