@@ -111,7 +111,7 @@ const Posts: React.FC = () => {
         title: "Post Created",
         description: "Welcome to our comunity",
         status: "success",
-        duration: 9000,
+        duration: 2000,
         isClosable: true,
         position: "top",
       });
@@ -128,7 +128,7 @@ const Posts: React.FC = () => {
         title: "Post Updated",
         description: "Welcome to our comunity",
         status: "info",
-        duration: 9000,
+        duration: 2000,
         isClosable: true,
         position: "top",
       });
@@ -145,7 +145,7 @@ const Posts: React.FC = () => {
         title: "Post Deleted",
         description: "Status updated",
         status: "error",
-        duration: 9000,
+        duration: 2000,
         isClosable: true,
         position: "top",
       });
