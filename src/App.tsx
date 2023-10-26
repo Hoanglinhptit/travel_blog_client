@@ -1,23 +1,30 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { SignUp } from "./pages/Auth/SignUp";
 import AdminPost from "./pages/Admin/Posts";
 import AdminUser from "./pages/Admin/Users";
 import AdminTags from "./pages/Admin/Tags";
 import AdminCategories from "./pages/Admin/Categories";
-
 import CRUDposts from "./pages/CRUD posts";
 import { PrivateRoute } from "./utils/ProtectedRoute";
-// import { Footer } from "./layouts/footer";
 import { Login } from "./pages/Auth/Login";
+import { Header } from "./layouts/header";
+import { Footer } from "./layouts/footer";
 
 const App: React.FC = () => {
+  const [cond, setCond] = useState<boolean>(
+    window.location.pathname === "/" || window.location.pathname === "/post",
+  );
+  const location = useLocation();
+  useEffect(() => {
+    const cond = location.pathname === "/" || location.pathname === "/post";
+    cond ? setCond(true) : setCond(false);
+  }, [location]);
   return (
     <>
       <div>
-        {/* <Header /> */}
-
+        {cond && <Header />}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/auth/login" element={<Login />} />
@@ -40,7 +47,7 @@ const App: React.FC = () => {
           </Route>
         </Routes>
       </div>
-      {/* <Footer /> */}
+      {cond && <Footer />}
     </>
   );
 };
