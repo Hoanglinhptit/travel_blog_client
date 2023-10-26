@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Table, Thead, Tbody, Tr, Th, Td, Box } from "@chakra-ui/react";
 import React from "react";
-import { useRowSelect, useTable } from "react-table";
+import { Column, useRowSelect, useTable } from "react-table";
 
-export interface table {
-  columns: any;
-  data: any;
-}
+export type table = {
+  columns: Column<object>[];
+  data: object[];
+};
 
 export const CommonTable = ({ columns, data }: table) => {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =

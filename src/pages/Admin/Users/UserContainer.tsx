@@ -36,7 +36,11 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  UseMutationResult,
+  useMutation,
+  useQuery,
+} from "@tanstack/react-query";
 import {
   getUsersRequest,
   updateUserAdmin,
@@ -93,7 +97,7 @@ const Users: React.FC = () => {
   });
 
   // update mutation
-  const updateUser: any = useMutation({
+  const updateUser: UseMutationResult = useMutation({
     mutationFn: async (data) => await updateUserAdmin(data),
     onSuccess: () => {
       onCloseAlert();
@@ -110,7 +114,7 @@ const Users: React.FC = () => {
     },
     onError: (error) => console.log(error),
   });
-  const deleteUser: any = useMutation({
+  const deleteUser: UseMutationResult = useMutation({
     mutationFn: async (data) => await deleteUserAdmin(data),
     onSuccess: () => {
       onCloseAlert();

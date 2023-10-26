@@ -37,7 +37,11 @@ import {
 } from "@chakra-ui/react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import MdEditor from "@uiw/react-md-editor";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  UseMutationResult,
+  useMutation,
+  useQuery,
+} from "@tanstack/react-query";
 import {
   getAdminPostRequest,
   // getUsersRequest,
@@ -102,7 +106,7 @@ const Posts: React.FC = () => {
     retry: 10,
   });
   // use mutation for create api
-  const createPost: any = useMutation({
+  const createPost: UseMutationResult = useMutation({
     mutationFn: async (data) => await creatPostAdmin(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["Post"] });
@@ -119,7 +123,7 @@ const Posts: React.FC = () => {
     onError: (error) => console.log(error),
   });
   // update mutation
-  const updatePost: any = useMutation({
+  const updatePost: UseMutationResult = useMutation({
     mutationFn: async (data) => await updatePostAdmin(data),
     onSuccess: () => {
       onCloseAlert();
@@ -136,7 +140,7 @@ const Posts: React.FC = () => {
     },
     onError: (error) => console.log(error),
   });
-  const deletePost: any = useMutation({
+  const deletePost: UseMutationResult = useMutation({
     mutationFn: async (data) => await deletePostAdmin(data),
     onSuccess: () => {
       onCloseAlert();
