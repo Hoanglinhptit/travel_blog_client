@@ -13,6 +13,14 @@ import {
   useColorModeValue,
   // useBreakpointValue,
   useDisclosure,
+  Avatar,
+  HStack,
+  VStack,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -22,13 +30,12 @@ import {
 } from "@chakra-ui/icons";
 import React from "react";
 import { Logo } from "../logo";
-
-const role = localStorage.getItem("role");
-const isAuth = localStorage.getItem("auth_token");
+import { FiBell, FiChevronDown } from "react-icons/fi";
 
 export const Header: React.FC = () => {
   const { isOpen, onToggle } = useDisclosure();
-
+  const role = localStorage.getItem("role");
+  const isAuth = localStorage.getItem("auth_token");
   return (
     <Box>
       <Flex
@@ -64,7 +71,7 @@ export const Header: React.FC = () => {
           </Flex>
         </Flex>
 
-        {
+        {!isAuth ? (
           <Stack
             flex={{ base: 1, md: 0 }}
             justify={"flex-end"}
@@ -87,7 +94,7 @@ export const Header: React.FC = () => {
               fontWeight={600}
               color={"white"}
               bg={"pink.400"}
-              href={"#"}
+              href={"/auth/signup"}
               _hover={{
                 bg: "pink.300",
               }}
@@ -95,7 +102,65 @@ export const Header: React.FC = () => {
               Sign Up
             </Button>
           </Stack>
-        }
+        ) : (
+          <HStack spacing={{ base: "0", md: "6" }}>
+            <IconButton
+              size="lg"
+              variant="ghost"
+              aria-label="open menu"
+              icon={<FiBell />}
+            />
+            <Flex alignItems={"center"}>
+              <Menu>
+                <MenuButton
+                  py={2}
+                  transition="all 0.3s"
+                  _focus={{ boxShadow: "none" }}
+                >
+                  <HStack>
+                    <Avatar
+                      size={"sm"}
+                      src={
+                        "https://thumbs.dreamstime.com/b/cat-avatar-illustration-cartoon-45383590.jpg"
+                      }
+                    />
+                    <VStack
+                      display={{ base: "none", md: "flex" }}
+                      alignItems="flex-start"
+                      spacing="1px"
+                      ml="2"
+                    >
+                      <Text fontSize="sm">{localStorage.getItem("name")}</Text>
+                      <Text fontSize="xs" color="gray.600">
+                        {localStorage.getItem("role")}
+                      </Text>
+                    </VStack>
+                    <Box display={{ base: "none", md: "flex" }}>
+                      <FiChevronDown />
+                    </Box>
+                  </HStack>
+                </MenuButton>
+                <MenuList
+                  bg={useColorModeValue("white", "gray.900")}
+                  borderColor={useColorModeValue("gray.200", "gray.700")}
+                >
+                  <MenuItem>Profile</MenuItem>
+                  <MenuItem>Settings</MenuItem>
+                  <MenuItem>Billing</MenuItem>
+                  <MenuDivider />
+                  <MenuItem
+                    onClick={() => {
+                      localStorage.clear();
+                      window.location.reload();
+                    }}
+                  >
+                    Sign out
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </Flex>
+          </HStack>
+        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -291,19 +356,19 @@ const NAV_ITEMS: Array<NavItem> = [
 
   {
     label: "DashBoard",
-    children: [
-      {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
-        href: "#",
-      },
-      {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
-        href: "#",
-      },
-    ],
-    href: "/admin/dashboard",
+    // children: [
+    //   {
+    //     label: "Job Board",
+    //     subLabel: "Find your dream design job",
+    //     href: "#",
+    //   },
+    //   {
+    //     label: "Freelance Projects",
+    //     subLabel: "An exclusive list for contract work",
+    //     href: "#",
+    //   },
+    // ],
+    href: "/admin/posts",
   },
   {
     label: "About US",

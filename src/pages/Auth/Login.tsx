@@ -35,6 +35,8 @@ export const Login: React.FC = () => {
     console.log("response", respone);
     localStorage.setItem("auth_token", respone.data.data.access_token);
     localStorage.setItem("role", respone.data.data.role);
+    localStorage.setItem("name", respone.data.data.name);
+
     respone.data.data.role === "admin"
       ? navigate("/admin/posts")
       : navigate(-1);
