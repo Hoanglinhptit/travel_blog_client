@@ -54,6 +54,8 @@ const getAdminTagsRequest: any = (payload: Record<string, any>) =>
     payload,
   );
 const creatTagAdmin: any = (payload: Record<string, any>) => {
+  console.log("payload", payload);
+
   return ApiClient.post("/api/tags", payload);
 };
 const updateTagAdmin: any = (payload: Record<string, any>) =>

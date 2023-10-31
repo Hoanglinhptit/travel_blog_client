@@ -1,21 +1,53 @@
+import {
+  VStack,
+  Container,
+  useBreakpointValue,
+  Stack,
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  Heading,
+} from "@chakra-ui/react";
 import React from "react";
-// import { signUpRequest } from "../../apis";
+import CaptionCarousel from "../../layouts/carousels";
 export const Home: React.FC = () => {
-  // const generateUser = async () => {
-  //   for (let index = 16; index < 1000; index++) {
-  //     const respone = await signUpRequest({
-  //       name: `Author${index}`,
-  //       email: `author${index}@post.vn`,
-  //       password: "user",
-  //     });
-  //     console.log(respone);
-  //   }
-  // };
+  const containerMaxW = useBreakpointValue({
+    // base: "container.sm",
+    md: "container.sm",
+    xl: "container.lg",
+    "2xl": "container.xl",
+  });
   return (
-    <div>
-      {" "}
-      Home show list port {"            "}
-      {/* <button onClick={generateUser}>generate user</button> */}
-    </div>
+    <>
+      <VStack marginTop="10">
+        <Container
+          maxW={containerMaxW}
+          bg="green.400"
+          color="#262626"
+          centerContent
+          padding={0}
+        >
+          <CaptionCarousel />
+          <Card
+            direction={{ base: "column", sm: "row" }}
+            overflow="hidden"
+            variant="outline"
+          >
+            <Stack>
+              <CardBody>
+                <Heading size="md">The perfect latte</Heading>
+              </CardBody>
+
+              <CardFooter>
+                <Button variant="solid" colorScheme="blue">
+                  Buy Latte
+                </Button>
+              </CardFooter>
+            </Stack>
+          </Card>
+        </Container>
+      </VStack>
+    </>
   );
 };

@@ -163,14 +163,6 @@ const Posts: React.FC = () => {
         Header: "List",
         accessor: (_: any, index: number) => index + 1,
       },
-      // {
-      //   Header: "Select", // Checkbox column header
-      //   accessor: "isSelected", // A field to track checkbox state
-      //   Cell: (row) => (
-      //     <Checkbox isChecked={row.cell.value} onChange={() => row} />
-      //   ),
-      // },
-
       {
         Header: "Title",
         accessor: "title",
@@ -237,9 +229,7 @@ const Posts: React.FC = () => {
     [],
   );
   const handleEdit = (itemId: any) => {
-    // Set selectedItem and open the modal here
     setEdit(true);
-
     const item = itemId.cell.row.original || {};
     setSelectedItem(item);
     const editTags = item?.tags.map((e: { name: string }) => e.name);
