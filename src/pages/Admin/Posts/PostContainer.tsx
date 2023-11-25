@@ -245,7 +245,7 @@ const Posts: React.FC = () => {
     isEdit ? onOpenAlert() : createPost.mutate(post);
   };
 
-  const handleDelete = async (itemId: any) => {
+  const handleDelete = (itemId: any) => {
     setEdit(false);
 
     const item = itemId.cell.row.original || {};

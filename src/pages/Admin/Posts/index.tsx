@@ -1,10 +1,10 @@
 import DashBoard from "../Dashboard";
-import Posts from "./PostContainer";
+import Post from "src/pages/Admin/Posts/PostContainer";
 export default function index() {
   return (
     <>
       <DashBoard>
-        <Posts />
+        <Post />
       </DashBoard>
     </>
   );
